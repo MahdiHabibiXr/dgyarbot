@@ -102,5 +102,20 @@ async def callbacks(client, callback_query):
         markup = markup_creator(btn)
 
         await client.send_message(chat_id, msg, reply_markup = markup)
+    
+    elif(data == 'return_to_menu'):
+        msg = bot_data['return_to_menu']['msg']
+        btn = bot_data['return_to_menu']['btn']
+        markup = markup_creator(btn)
+
+        await client.send_message(chat_id, msg, reply_markup = markup)
+
+        
+    elif(data == 'help'):
+        msg = bot_data['help']['msg']
+        btn = bot_data['help']['btn']
+        markup = markup_creator(btn)
+
+        await client.send_message(chat_id, msg, reply_markup = markup)
 
 bot.run()
