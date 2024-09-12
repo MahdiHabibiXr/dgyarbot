@@ -28,7 +28,7 @@ async def start_text(client, message):
     msg = bot_data['welcome_new_user']['msg']
     markup = markup_creator(bot_data['welcome_new_user']['btn'])
 
-    await client.send_message(chat_id, reply_markup = markup, caption = msg)
+    await client.send_message(chat_id, msg, reply_markup = markup)
 
 
 @bot.on_callback_query()
