@@ -24,7 +24,7 @@ async def start_text(client, message):
 
 @bot.on_message(filters.command('start') & filters.private)
 async def start_text(client, message):
-    chat_id = message.chat_id
+    chat_id = message.chat.id
     msg = bot_data['welcome_new_user']['msg']
     markup = markup_creator(bot_data['welcome_new_user']['btn'])
 
