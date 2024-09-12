@@ -59,7 +59,7 @@ async def image(client, message):
     chat_id = message.chat.id
     msg = bot_data['edit_image']['msg']
     btn = bot_data['edit_image']['btn']
-    fields = bot_data['authenticate_to_digikala']['fields']
+    fields = bot_data['edit_image']['fields']
     markup = markup_creator(btn)
 
     if fields:
