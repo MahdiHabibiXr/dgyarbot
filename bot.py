@@ -101,7 +101,7 @@ async def callbacks(client, callback_query):
         msg = bot_data['sent_url']['msg']
         btn = bot_data['sent_url']['btn']
         markup = markup_creator(btn)
-        
-        client.send_message(chat_id, msg, reply_markup = markup)
+
+        await client.send_message(chat_id, msg, reply_markup = markup)
 
 bot.run()
