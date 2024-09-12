@@ -27,7 +27,7 @@ async def messages(client, message):
     chat_id = message.chat.id
     command = message.text
 
-    if(command == '/start')
+    if(command == '/start'):
         msg = bot_data['welcome_new_user']['msg']
         btn = bot_data['welcome_new_user']['btn']
         markup = markup_creator(btn)
