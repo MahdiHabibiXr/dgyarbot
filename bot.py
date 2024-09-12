@@ -19,14 +19,24 @@ def markup_creator(buttons):
     return markup
 
 @bot.on_message(filters.command('test') & filters.private)
-async def start_text(client, message):
+async def up(client, message):
     await message.reply('im upppp')
 
 @bot.on_message(filters.command('start') & filters.private)
-async def start_text(client, message):
+async def start(client, message):
     chat_id = message.chat.id
     msg = bot_data['welcome_new_user']['msg']
-    markup = markup_creator(bot_data['welcome_new_user']['btn'])
+    btn = bot_data['welcome_new_user']['btn']
+    markup = markup_creator(btn)
+
+    await client.send_message(chat_id, msg, reply_markup = markup)
+
+@bot.on_message(filters.command('menu') & filters.private)
+async def menu(client, message):
+    chat_id = message.chat.id
+    msg = bot_data['authenticated']['msg']
+    btn = bot_data['authenticated']['btn']
+    markup = markup_creator(btn)
 
     await client.send_message(chat_id, msg, reply_markup = markup)
 
@@ -40,8 +50,15 @@ async def callbacks(client, callback_query):
     await message.delete()
 
     if(data == 'connect_to_digikala'):
+        msg = bot_data['authenticate_to_digikala']['msg']
+        fields = bot_data['authenticate_to_digikala']['fields']
 
-        await message.reply(bot_data['authenticate_to_digikala']['msg']) #TODO:send the auth link here
+        #TODO:generate the Auth Link
+
+        if fields:
+            msg = msg.format(auth_link="Auth Link")
+    
+        await message.reply(msg)
 
 
 
