@@ -42,8 +42,9 @@ async def messages(client, message):
 
         await client.send_message(chat_id, msg, reply_markup = markup)
 
-    else :
-        message.reply('chatbot thinking')
+@bot.on_message(filters.command([], []), filters.private)
+async def messages(client, message):
+    message.reply('chatbot thinking')
 # @bot.on_message(filters.command('menu') & filters.private)
 # async def menu(client, message):
 #     chat_id = message.chat.id
