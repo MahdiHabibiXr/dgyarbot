@@ -40,6 +40,37 @@ async def menu(client, message):
 
     await client.send_message(chat_id, msg, reply_markup = markup)
 
+@bot.on_message(filters.regex('https://') & filters.private)
+async def url(client, message):
+    chat_id = message.chat.id
+    msg = bot_data['sent_url']['msg']
+    btn = bot_data['sent_url']['btn']
+    fields = bot_data['authenticate_to_digikala']['fields']
+    markup = markup_creator(btn)
+
+    if fields:
+            msg = msg.format(sheet_link = "SHEET LINK") #TODO: The sheet url should be used here
+
+    await client.send_message(chat_id, msg, reply_markup = markup)
+
+@bot.on_message(filters.private & filters.photo)
+async def image(client, message):
+    img_id = message.photo.file_id
+    chat_id = message.chat.id
+    msg = bot_data['sent_url']['msg']
+    btn = bot_data['sent_url']['btn']
+    fields = bot_data['authenticate_to_digikala']['fields']
+    markup = markup_creator(btn)
+
+    if fields:
+        msg = msg.format(sheet_link="SHEET LINK") #The sheet link should be placed here
+
+    file = await client.download_media(img_id, file_name = f'photos/{chat_id}.jpg')
+
+    #TODO: the image should be processed here
+    processed = file
+
+    await client.send_photo(chat_id, img_id, reply_markup = markup, caption = msg)
 
 @bot.on_callback_query()
 async def callbacks(client, callback_query):
@@ -60,6 +91,17 @@ async def callbacks(client, callback_query):
     
         await message.reply(msg)
 
+    elif(data == 'add_product'):
+        msg = bot_data['add_product']['msg']
+        
+        await message.reply(msg)
 
+    elif(data == 'confirm'):
+        msg = bot_data['authenticate_to_digikala']['msg']
+        msg = bot_data['sent_url']['msg']
+        btn = bot_data['sent_url']['btn']
+        markup = markup_creator(btn)
+        
+        client.send_message(chat_id, msg, reply_markup = markup)
 
 bot.run()
