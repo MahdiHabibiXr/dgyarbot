@@ -97,9 +97,8 @@ async def callbacks(client, callback_query):
         await message.reply(msg)
 
     elif(data == 'confirm'):
-        msg = bot_data['authenticate_to_digikala']['msg']
-        msg = bot_data['sent_url']['msg']
-        btn = bot_data['sent_url']['btn']
+        msg = bot_data['confirm']['msg']
+        btn = bot_data['confirm']['btn']
         markup = markup_creator(btn)
 
         await client.send_message(chat_id, msg, reply_markup = markup)
