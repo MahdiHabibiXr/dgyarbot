@@ -40,8 +40,8 @@ async def callbacks(client, callback_query):
     await message.delete()
 
     if(data == 'connect_to_digikala'):
-        await callback_query.answer("", show_alert = False)
-        await message.reply("✅درخواست شما در صف پردازش قرار گرفت، لطفا کمی شکیبا باشید.")
+
+        await message.reply(bot_data['authenticate_to_digikala']['msg']) #TODO:send the auth link here
 
 
 
