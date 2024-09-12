@@ -57,8 +57,8 @@ async def url(client, message):
 async def image(client, message):
     img_id = message.photo.file_id
     chat_id = message.chat.id
-    msg = bot_data['sent_url']['msg']
-    btn = bot_data['sent_url']['btn']
+    msg = bot_data['edit_image']['msg']
+    btn = bot_data['edit_image']['btn']
     fields = bot_data['authenticate_to_digikala']['fields']
     markup = markup_creator(btn)
 
